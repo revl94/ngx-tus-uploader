@@ -85,7 +85,7 @@ export class AppComponent {
 Clone this repository:
 
 ```sh
-git clone https://github.com/YOUR_USERNAME/ngx-tus-uploader.git
+git clone https://github.com/revl94/ngx-tus-uploader.git
 cd ngx-tus-uploader
 ```
 
