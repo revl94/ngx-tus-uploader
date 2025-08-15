@@ -1,0 +1,33 @@
+{
+  "name": "ngx-tus-uploader",
+  "version": "0.0.1",
+  "description": "Angular service for resumable file uploads using the tus protocol via tus-js-client.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<your-username>/ngx-tus-uploader.git"
+  },
+  "keywords": [
+    "Angular",
+    "File Upload",
+    "Resumable Upload",
+    "tus",
+    "tus-js-client",
+    "Chunked Upload",
+    "Upload Service",
+    "Resume Upload"
+  ],
+  "author": "Ramon Vielma - rvielma94@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/<your-username>/ngx-tus-uploader/issues"
+  },
+  "homepage": "https://github.com/<your-username>/ngx-tus-uploader#readme",
+  "peerDependencies": {
+    "@angular/common": "^14.2.0",
+    "@angular/core": "^14.2.0",
+    "tus-js-client": "^4.3.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

@@ -1,27 +1,130 @@
-# NgxTusUploader
+# ngx-tus-uploader
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.10.
+An Angular library and demo project for resumable file uploads using the [tus.io](https://tus.io) protocol via [`tus-js-client`](https://github.com/tus/tus-js-client).
 
-## Development server
+This repository contains:
+- **`projects/ngx-tus-uploader`** — the reusable Angular library.
+- **`projects/demo`** — an Angular demo app showing how to use the library.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- 📂 **Resumable uploads** using the tus protocol.
+- ⏯ **Pause and resume** uploads without losing progress.
+- 📡 Automatic retry on network issues.
+- 🔒 Authentication header support.
+- ⚡ Chunked uploads for better performance.
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Built With
 
-## Running unit tests
+- [Angular](https://angular.io/)
+- [tus-js-client](https://github.com/tus/tus-js-client)
+- [TypeScript](https://www.typescriptlang.org/)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## Installation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Install the library in your Angular project:
 
-## Further help
+```sh
+npm install ngx-tus-uploader tus-js-client
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Ensure you have Angular 14+ in your project, as it is required.
+
+---
+
+## Usage
+
+### Import and Inject
+
+```ts
+import { Component } from '@angular/core';
+import { NgxTusUploaderService, UploadProgress } from 'ngx-tus-uploader';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html'
+})
+export class AppComponent {
+  progress: UploadProgress | null = null;
+
+  constructor(private uploader: NgxTusUploaderService) {}
+
+  startUpload(file: File) {
+    this.uploader.startUpload(
+      file,
+      'https://your-tus-server/files/',
+      { scheme: 'Bearer', token: 'YOUR_TOKEN' },
+      { guid: 'abc123', member: 1 },
+      (progress) => this.progress = progress,
+      () => console.log('Upload complete!'),
+      (err) => console.error(err)
+    );
+  }
+}
+```
+
+### HTML Example
+
+```html
+<input type="file" (change)="startUpload($event.target.files[0])" />
+<div *ngIf="progress">
+  Uploaded: {{ progress.percentage | number: '1.0-0' }}%
+</div>
+```
+
+---
+
+## Running the Demo
+
+Clone this repository:
+
+```sh
+git clone https://github.com/YOUR_USERNAME/ngx-tus-uploader.git
+cd ngx-tus-uploader
+```
+
+Install dependencies:
+
+```sh
+npm install
+```
+
+Run the demo app:
+
+```sh
+ng serve demo
+```
+
+Open [http://localhost:4200](http://localhost:4200) to see the demo in action.
+
+---
+
+## Repository Structure
+
+```
+projects/
+├── demo/                  # Demo Angular application
+└── ngx-tus-uploader/      # Library source code
+```
+
+---
+
+## Contributing
+
+1. Fork the project.
+2. Create your feature branch (`git checkout -b feature/YourFeature`).
+3. Commit your changes (`git commit -m 'Add YourFeature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a Pull Request.
+
+---
+
+## License
+
+This project is licensed under the MIT License.

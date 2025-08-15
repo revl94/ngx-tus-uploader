@@ -1,0 +1,29 @@
+<div class="upload-container">
+  <input
+    type="file"
+    (change)="onFileSelected($event)"
+    [attr.aria-label]="'Choose file to upload'"
+  />
+  <button
+    (click)="startUpload()"
+    [disabled]="!selectedFile || isUploading"
+    class="upload-button"
+  >
+    {{ isUploading ? 'Uploading...' : 'Upload' }}
+  </button>
+  <button
+    *ngIf="isUploading"
+    (click)="cancelUpload()"
+    class="cancel-button"
+  >
+    Cancel
+  </button>
+  <div *ngIf="progress" class="progress-container">
+    <div class="progress-bar" [style.width.%]="progress.percentage">
+      {{ progress.percentage | number: '1.0-0' }}%
+    </div>
+  </div>
+  <div *ngIf="message" [class]="messageType" role="alert">
+    {{ message }}
+  </div>
+</div>
