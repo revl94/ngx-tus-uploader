@@ -1,6 +1,21 @@
 {
   "name": "ngx-tus-uploader",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "An Angular library and demo project for resumable file uploads using the [tus.io](https://tus.io) protocol via [`tus-js-client`](https://github.com/tus/tus-js-client).",
+  "contributors": [
+    {
+      "name": "Ramon Vielma",
+      "email": "rvielma@cdlac.com"
+    }
+  ],
+  "repository": {
+    "type": "Git",
+    "url": "https://github.com/revl94/ngx-tus-uploader"
+  },
+  "keywords": [
+    "angular",
+    "TUS Protocol"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve demo --o --port 4201 --host 0.0.0.0",
